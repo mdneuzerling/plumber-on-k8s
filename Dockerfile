@@ -7,7 +7,11 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 	libcurl4-openssl-dev \
 	libssl-dev
 
-RUN install2.r plumber promises future
+# Using rocker to install these packages doesn't provide the latest versions
+# Instead, we'll use the precompiled binaries kindly provided by RStudio
+# Package versions pinned to 2020-10-01
+ENV CRAN_REPO https://packagemanager.rstudio.com/all/__linux__/focal/338
+RUN Rscript -e 'install.packages(c("plumber", "promises", "future"), repos = c("CRAN" = Sys.getenv("CRAN_REPO"))'
 
 # Create a non-root plumber user to run the API
 RUN useradd plumber \
