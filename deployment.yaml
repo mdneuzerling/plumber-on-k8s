@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plumber-on-k8s-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: plumber-on-k8s
+  template:
+    metadata:
+      labels:
+        app: plumber-on-k8s
+    spec:
+      containers:
+      - name: plumber-on-k8s
+        image: plumber-on-k8s
+        ports:
+        - containerPort: 8000
