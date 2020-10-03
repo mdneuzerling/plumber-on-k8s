@@ -13,10 +13,8 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 ENV CRAN_REPO https://packagemanager.rstudio.com/all/__linux__/focal/338
 RUN Rscript -e 'install.packages(c("plumber", "promises", "future"), repos = c("CRAN" = Sys.getenv("CRAN_REPO")))'
 
-# Create a non-root plumber user to run the API
-RUN useradd plumber \
-	&& mkdir /home/plumber \
-	&& chown plumber:plumber /home/plumber
+# Create a non-root plumber user to run the API, along with a new home directory
+RUN groupadd -r plumber && useradd --no-log-init -r -g plumber plumber
 
 ADD plumber.R /home/plumber/plumber.R
 ADD entrypoint.R /home/plumber/entrypoint.R
@@ -24,4 +22,5 @@ ADD entrypoint.R /home/plumber/entrypoint.R
 EXPOSE 8000
 
 WORKDIR /home/plumber
-CMD su - plumber -c "Rscript entrypoint.R"
+USER plumber
+CMD Rscript entrypoint.R
