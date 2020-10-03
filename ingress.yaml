@@ -4,7 +4,7 @@ metadata:
   name: plumber-on-k8s-ingress
 spec:
   rules:
-    http:
+    - http:
       paths:
       - path: /health
         backend:
