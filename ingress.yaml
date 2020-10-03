@@ -4,9 +4,12 @@ metadata:
   name: plumber-on-k8s-ingress
 spec:
   rules:
-  - host: cafe.example.com
     http:
       paths:
+      - path: /health
+        backend:
+          serviceName: plumber-on-k8s-service
+          servicePort: 80
       # - path: /parity
       #   backend:
       #     serviceName: plumber-on-k8s-service
@@ -23,7 +26,3 @@ spec:
       #   backend:
       #     serviceName: plumber-on-k8s-service
       #     servicePort: 80
-      - path: /health
-        backend:
-          serviceName: plumber-on-k8s-service
-          servicePort: 80
