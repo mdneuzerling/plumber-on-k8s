@@ -7,22 +7,22 @@ spec:
   - host: cafe.example.com
     http:
       paths:
-      - path: /parity
-        backend:
-          serviceName: plumber-on-k8s-service
-          servicePort: 80
-      - path: /wait
-        backend:
-          serviceName: plumber-on-k8s-service
-          servicePort: 80
-      - path: /fail
-        backend:
-          serviceName: plumber-on-k8s-service
-          servicePort: 80
-      - path: /quit
-        backend:
-          serviceName: plumber-on-k8s-service
-          servicePort: 80
+      # - path: /parity
+      #   backend:
+      #     serviceName: plumber-on-k8s-service
+      #     servicePort: 80
+      # - path: /wait
+      #   backend:
+      #     serviceName: plumber-on-k8s-service
+      #     servicePort: 80
+      # - path: /fail
+      #   backend:
+      #     serviceName: plumber-on-k8s-service
+      #     servicePort: 80
+      # - path: /quit
+      #   backend:
+      #     serviceName: plumber-on-k8s-service
+      #     servicePort: 80
       - path: /health
         backend:
           serviceName: plumber-on-k8s-service
