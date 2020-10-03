@@ -23,3 +23,7 @@ spec:
         backend:
           serviceName: plumber-on-k8s-service
           servicePort: 80
+      - path: /health
+        backend:
+          serviceName: plumber-on-k8s-service
+          servicePort: 80
