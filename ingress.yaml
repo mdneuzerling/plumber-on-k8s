@@ -2,20 +2,20 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: plumber-on-k8s-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/use-regex: "true"
+  # annotations:
+  #   nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
   - http:
       paths:
-      - path: /(health|parity)
+      - path: /health
         backend:
           serviceName: plumber-on-k8s-service
           servicePort: 80
-      # - path: /parity
-      #   backend:
-      #     serviceName: plumber-on-k8s-service
-      #     servicePort: 80
+      - path: /parity
+        backend:
+          serviceName: plumber-on-k8s-service
+          servicePort: 80
       # - path: /wait
       #   backend:
       #     serviceName: plumber-on-k8s-service
